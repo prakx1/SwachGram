@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const citezenSchema = new mongoose.Schema({
+const citizenSchema = new mongoose.Schema({
   googleId: {
     type: String,
     required: true,
@@ -10,7 +10,7 @@ const citezenSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  firstname: {
+  firstName: {
     type: String,
     required: true,
   },
@@ -30,4 +30,4 @@ const citezenSchema = new mongoose.Schema({
     type: Number,
   },
 });
-module.exports = ("Citezen", citezenSchema);
+module.exports = mongoose.model("Citizen", citizenSchema);

@@ -4,10 +4,12 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const passport = require("passport");
-const session = require("express-session");
 const dotenv = require("dotenv");
+const mongoose = require("mongoose");
 const connectDB = require("./config/db");
-
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+const guestRouter = require("./routes/guest");
 //Load config
 dotenv.config({ path: "./config/config.env" });
 console.log(process.env.GOOGLE_CLIENT_ID);
@@ -20,9 +22,9 @@ connectDB();
 
 //Load routes
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var loginRouter = require("./routes/auth");
 const authRouter = require("./routes/auth");
+const { Mongoose } = require("mongoose");
+const { ensureAuth } = require("./middleware/auth");
 var app = express();
 
 const PORT = process.env.PORT || 5000;
@@ -43,18 +45,20 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
   session({
-    secret: "jai bhadrakali",
+    secret: "keyboard cat",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
-//Passport middleware
-passport.use(passport.initialize());
-passport.use(passport.session());
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+app.use("/", guestRouter);
+
 app.use("/auth", authRouter);
+app.use("/feed", indexRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
