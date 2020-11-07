@@ -2,14 +2,14 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const { stopAuthfromLogin, ensureAuth } = require("../middleware/auth");
-//Auth with google passport strategy
 
+//Auth with google passport strategy
 router.get(
   "/google",
   stopAuthfromLogin,
   passport.authenticate("google", { scope: ["profile"] })
 );
-console.log("here");
+
 //Google auth callback
 router.get(
   "/google/callback",
@@ -18,7 +18,7 @@ router.get(
     res.redirect("/feed");
   }
 );
-//Logout rout
+//Logout route
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");

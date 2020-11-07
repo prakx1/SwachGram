@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-
-const citizenSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+const citizenSchema = new Schema({
   googleId: {
     type: String,
     required: true,
@@ -29,5 +29,11 @@ const citizenSchema = new mongoose.Schema({
   socialstars: {
     type: Number,
   },
+  complaints: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "complains",
+    },
+  ],
 });
 module.exports = mongoose.model("Citizen", citizenSchema);
