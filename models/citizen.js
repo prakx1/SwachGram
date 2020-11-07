@@ -25,9 +25,12 @@ const citizenSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-
-  socialstars: {
-    type: Number,
+  location: {
+    type: String,
+  },
+  role: {
+    type: String,
+    default: "null",
   },
   complaints: [
     {

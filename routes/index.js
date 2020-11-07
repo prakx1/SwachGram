@@ -9,12 +9,16 @@ var router = express.Router();
 
 /* GET home page. */
 router.get("/", ensureAuth, function (req, res, next) {
+  console.log(req.user);
+
   Complain.find()
     .populate("author", "displayName _id")
+    .where("location")
+    .equals(req.user.location)
     .sort("-createdAt")
     .then((complaints) => {
       complaints = complaints;
-      console.log(complaints[0].author.displayName);
+      // console.log(complaints[0].author.displayName);
 
       res.render("Home", {
         complaints: complaints,

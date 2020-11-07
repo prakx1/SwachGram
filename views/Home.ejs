@@ -8,7 +8,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SwachGram</title>
+  <title >SwachhGram</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -21,19 +22,14 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">SwachGram</a>
+      <a class="navbar-brand"  href="feed"><i class="fa fa-camera-retro fa-2x"></i> SwachhGram</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="">Login</a>
           </li>
@@ -43,9 +39,9 @@
           <li class="nav-item">
             <a class="nav-link" href="mycomplaints">My complaints</a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="#"><%= auth%></a>
-          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="role_location">Role and location</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -67,7 +63,7 @@
           <input type="text" id="location" name="location"><br>
           <label for="exampleFormControlFile1">Upload image:</label>
           <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1">
-          <button type="submit" class="btn btn-primary">Create Complain</button>
+          <button type="submit" class="btn btn-success">Create Complain</button>
        </div>
       </form>
     <div class="row">
@@ -90,7 +86,6 @@
             <div class="card-body">
               <h2 class="card-title"><%= complain.title%></h2>
               <p class="card-text">Lorem ipsum dolor sit amet</p>
-              <!-- <a href="#" class="btn btn-primary">Read More &rarr;</a> -->
             </div>
             <img class="card-img-top" src="complaints_images/<%=complain.image%>" alt="Complain site image">
   

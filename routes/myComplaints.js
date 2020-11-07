@@ -11,8 +11,8 @@ router.get("/", function (req, res, next) {
   if (req.user) {
     citizen
       .findById(userId)
+      .sort("-createdAt")
       .populate({ path: "complaints" })
-      .sort("-date")
       .then((user) => {
         complaints = user.complaints;
         console.log(complaints);
