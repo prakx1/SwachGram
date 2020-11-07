@@ -32,7 +32,7 @@ const citizenSchema = new Schema({
   complaints: [
     {
       type: Schema.Types.ObjectId,
-      ref: "complains",
+      ref: "Complain",
     },
   ],
 });

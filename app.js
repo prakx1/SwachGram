@@ -23,9 +23,10 @@ require("./config/passport")(passport);
 connectDB();
 
 //Load routes
+var myComplaintsRouter = require("./routes/myComplaints");
 var indexRouter = require("./routes/index");
 const authRouter = require("./routes/auth");
-const { Mongoose } = require("mongoose");
+
 const { ensureAuth } = require("./middleware/auth");
 var app = express();
 
@@ -66,6 +67,7 @@ app.use("/", guestRouter);
 app.use("/auth", authRouter);
 app.use("/feed", indexRouter);
 app.use("/addComplain", addComplainRouter);
+app.use("/mycomplaints", myComplaintsRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

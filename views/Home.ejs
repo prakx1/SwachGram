@@ -41,7 +41,7 @@
             <a class="nav-link" href="auth/Logout">Logout</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">My complaints</a>
+            <a class="nav-link" href="mycomplaints">My complaints</a>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" href="#"><%= auth%></a>
@@ -79,30 +79,25 @@
           <small>Secondary Text</small>
         </h1>
 
-        <!-- Blog Post -->
-        <div class="card mb-4">
-          <div class="card-footer text-muted">
-            Posted on January 1, 2020 by
-            <a href="#">Start Bootstrap</a>
+        <!--Complains feed -->
+        <% complaints.forEach(function(complain){ %>
+          <div class="card mb-4">
+            <div class="card-footer text-muted">
+              <%=complain.createdAt%>
+              <a href="#"><%= complain.author.displayName%></a>
+              <p><%= complain.location%></p>
+            </div>
+            <div class="card-body">
+              <h2 class="card-title"><%= complain.title%></h2>
+              <p class="card-text">Lorem ipsum dolor sit amet</p>
+              <!-- <a href="#" class="btn btn-primary">Read More &rarr;</a> -->
+            </div>
+            <img class="card-img-top" src="complaints_images/<%=complain.image%>" alt="Complain site image">
+  
           </div>
-          <div class="card-body">
-            <h2 class="card-title">Post Title</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet</p>
-            <!-- <a href="#" class="btn btn-primary">Read More &rarr;</a> -->
-          </div>
-          <img class="card-img-top" src="http://placehold.it/750x500" alt="Card image cap">
+          <%}) %>
 
-        </div>
 
-        <!-- Pagination -->
-        <ul class="pagination justify-content-center mb-4">
-          <li class="page-item">
-            <a class="page-link" href="#">&larr; Older</a>
-          </li>
-          <li class="page-item disabled">
-            <a class="page-link" href="#">Newer &rarr;</a>
-          </li>
-        </ul>
 
       </div>
 

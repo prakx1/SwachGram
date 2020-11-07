@@ -3,7 +3,7 @@ const auth = require("../middleware/auth");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 var path = require("path");
-const Complain = require("../models/complaints");
+const Complain = require("../models/complains");
 const Citizen = require("../models/citizen");
 const multer = require("multer");
 var router = express.Router();
@@ -39,6 +39,7 @@ router.post("/", upload.single("image"), function (req, res, next) {
           title: req.body.complain_text,
           author: userId,
           image: req.file.filename,
+          location: req.body.location,
         });
         complain
           .save()
