@@ -31,10 +31,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="auth/Logout">Logout</a>
+            <a class="nav-link" href="addComplain">Post Complain</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="mycomplaints">My complaints</a>
@@ -42,50 +39,57 @@
           <li class="nav-item">
             <a class="nav-link" href="role_location">Role and location</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="auth/Logout">Logout</a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 <br>
 
-
-
 </div>
   <!-- Page Content -->
-  <!-- create complain form -->
-  
-  <div class="container">
-
-    <form action="addComplain" method="POST" encType="multipart/form-data">
-        <div class="form-group green-border-focus">
-          <textarea class="form-control" placeholder="Write your complain..." id="exampleFormControlTextarea1"name="complain_text" rows="4"></textarea>
-          <label for="location">Location:</label>
-          <input type="text" id="location" name="location"><br>
-          <label for="exampleFormControlFile1">Upload image:</label>
-          <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1">
-          <button type="submit" class="btn btn-success">Create Complain</button>
-       </div>
-      </form>
+    <div class="container">
     <div class="row">
-      
-      <!-- Blog Entries Column -->
+      <!-- Complains Entries Column -->
       <div class="col-md-8">
-
-        <h1 class="my-4">Page Heading
-          <small>Secondary Text</small>
+        <h1 class="my-4">
+          <small>Complaints in your location</small>
         </h1>
 
         <!--Complains feed -->
         <% complaints.forEach(function(complain){ %>
           <div class="card mb-4">
             <div class="card-footer text-muted">
-              <%=complain.createdAt%>
+              <%=complain.createdAt.toDateString()%>, 
               <a href="#"><%= complain.author.displayName%></a>
               <p><%= complain.location%></p>
+
+                <%if(role=="Worker"){%>
+              <form action="status/<%=complain._id%>",method="POST" encType="multipart/form-data">
+                <select name="status" >
+                  <option value="Work Pending">Work Pending</option>
+                  <option value="Work on Progress">Work on Progress</option>
+                  <option value="Work Done">Work Done</option>
+                </select>
+                <button type="submit">Set status</button>
+                </form> 
+            <%}%>
+            <%if(complain.status=="Work on Progress"){%>
+                <button type="button" class="btn btn-warning"><%=complain.status%></button>
+            <%}%>
+            <%if(complain.status=="Work Pending"){%>
+              <button type="button" class="btn btn-danger"><%=complain.status%></button>
+            <%}%>
+            <%if(complain.status=="Work Done"){%>
+              <button type="button" class="btn btn-success"><%=complain.status%></button>
+            <%}%>
+
             </div>
             <div class="card-body">
               <h2 class="card-title"><%= complain.title%></h2>
-              <p class="card-text">Lorem ipsum dolor sit amet</p>
+              <!-- <p class="card-text">Lorem ipsum dolor sit amet</p> -->
             </div>
             <img class="card-img-top" src="complaints_images/<%=complain.image%>" alt="Complain site image">
   
@@ -95,6 +99,19 @@
 
 
       </div>
+      <div class="col-md-4 ">
+
+        <!-- Search Widget -->
+        <div class="card my-4 position-fixed ">
+          <h5 class="card-header bg-success">User details</h5>
+          <div class="card-body">
+            <div class="font-weight-bold">
+                <p>Role: <%=role%></p>
+                <p>Location: <%=user_location%></p>
+            </div>
+          </div>
+        </div>
+        </div>
 
 
     <!-- /.row -->
@@ -105,7 +122,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+      <p class="m-0 text-center text-white">Copyright &copy; SwachhGram 2020</p>
     </div>
     <!-- /.container -->
   </footer>

@@ -23,6 +23,9 @@ const storage = multer.diskStorage({
 var upload = multer({
   storage: storage,
 });
+router.get("/", (req, res, next) => {
+  res.render("createComplain");
+});
 
 /* Create complain route */
 router.post("/", upload.single("image"), function (req, res, next) {

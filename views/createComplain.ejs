@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title >SwachhGram</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/blog-home.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top">
+    <div class="container">
+      <a class="navbar-brand"  href="feed"><i class="fa fa-camera-retro fa-2x"></i> SwachhGram</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="auth/Logout">Logout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mycomplaints">My complaints</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="role_location">Role and location</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<br>
+
+
+
+</div>
+  <!-- Page Content -->
+  <!-- create complain form -->
+  
+  <div class="container">
+
+    <form action="addComplain" method="POST" encType="multipart/form-data">
+        <div class="form-group green-border-focus">
+          <textarea class="form-control" placeholder="Write your complain..." id="exampleFormControlTextarea1"name="complain_text" rows="4"></textarea>
+          <label for="location">Location:</label>
+          <input type="text" id="location" name="location"><br>
+          <label for="exampleFormControlFile1">Upload image:</label>
+          <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1">
+          <button type="submit" class="btn btn-success">Create Complain</button>
+       </div>
+ </form>
+   
+
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">SwachhGram &copy;2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

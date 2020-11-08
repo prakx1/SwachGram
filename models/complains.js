@@ -23,6 +23,10 @@ const complainSchema = new Schema({
     type: String,
     required: true,
   },
+  status: {
+    type: String,
+    default: "Work Pending",
+  },
 });
 
 module.exports = mongoose.model("Complain", complainSchema);

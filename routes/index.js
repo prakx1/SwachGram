@@ -9,8 +9,9 @@ var router = express.Router();
 
 /* GET home page. */
 router.get("/", ensureAuth, function (req, res, next) {
-  console.log(req.user);
-
+  var role = req.user.role;
+  var user_location = req.user.location;
+  console.log(req.user.role);
   Complain.find()
     .populate("author", "displayName _id")
     .where("location")
@@ -22,6 +23,8 @@ router.get("/", ensureAuth, function (req, res, next) {
 
       res.render("Home", {
         complaints: complaints,
+        role: role,
+        user_location: user_location,
       });
     })
 

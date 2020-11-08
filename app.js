@@ -14,6 +14,7 @@ const MongoStore = require("connect-mongo")(session);
 const guestRouter = require("./routes/guest");
 const addComplainRouter = require("./routes/addComplain");
 const rolelocationRouter = require("./routes/roleLocation");
+const statusRouter = require("./routes/status");
 //Load config
 dotenv.config({ path: "./config/config.env" });
 
@@ -70,6 +71,7 @@ app.use("/feed", indexRouter);
 app.use("/addComplain", addComplainRouter);
 app.use("/mycomplaints", myComplaintsRouter);
 app.use("/role_location", rolelocationRouter);
+app.use("/status", statusRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
